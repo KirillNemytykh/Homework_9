@@ -138,5 +138,56 @@ public class RadioTest {
         int expected = 43;
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void setRadioStationMaxNumberWithNumberOfStationsAboveFactorySettings() {
+        Radio radio = new Radio(15);
+        radio.setRadioStation(15);
+        int actual = radio.getRadioStation();
+        int expected = 14;
+        Assertions.assertEquals(expected, actual);
+    }
 
+    @Test
+    public void setRadioStationMaxNumberWithNumberOfStationsLowerFactorySettings() {
+        Radio radio = new Radio(5);
+        radio.setRadioStation(5);
+        int actual = radio.getRadioStation();
+        int expected = 4;
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void setRadioStationMinNumberWithNumberOfStationsLowerFactorySettings() {
+        Radio radio = new Radio(-10);
+        radio.setRadioStation(-10);
+        int actual = radio.getRadioStation();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void nextButtonOverMaxRadioStationNumberWithNumberOfStationsAboveFactorySettings() {
+        Radio radio = new Radio(19);
+        radio.setRadioStation(19);
+        radio.next();
+        int actual = radio.getRadioStation();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void nextButtonOverMaxRadioStationNumberWithNumberOfStationsLowerFactorySettings() {
+        Radio radio = new Radio(5);
+        radio.setRadioStation(5);
+        radio.next();
+        int actual = radio.getRadioStation();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void prevButtonOverMaxRadioStationNumberWithNumberOfStationsAboveFactorySettings() {
+        Radio radio = new Radio(19);
+        radio.setRadioStation(0);
+        radio.prev();
+        int actual = radio.getRadioStation();
+        int expected = 18;
+        Assertions.assertEquals(expected, actual);
+    }
 }
